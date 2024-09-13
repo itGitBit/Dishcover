@@ -32,7 +32,11 @@ const authenticateToken = (request, response, next) => {
     })
 };
 
-server.use(cors({ origin: 'http://localhost:3000' }));
+server.use(cors({
+    origin: ['http://localhost:3000', 'http://10.100.102.7:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
+  }));
 server.use(json());
 // server.use(authenticateToken);
 

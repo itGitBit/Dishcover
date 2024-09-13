@@ -17,7 +17,7 @@ const addComment = async (comment) => {
 }
 
 const getAllComments = async () => {
-    let sql = "select id, title, description, user_id, recipe_id from comments";
+    let sql = "select c.id, title, description, user_id, u.username, recipe_id from comments c join users u on c.user_id=u.id";
     try {
         let comments = await execute(sql);
         return comments;
@@ -40,7 +40,7 @@ const getComment = async (commentId) => {
 }
 
 const getAllCommentsByRecipeId = async (recipeId) => {
-    let sql = "select id, title, description, user_id, recipe_id from comments where recipe_id = ?";
+    let sql = "select c.id, c.title, c.description, c.user_id, u.username, recipe_id from comments c join users u on c.user_id=u.id where recipe_id = ?";
     let parameters = [recipeId];
     try {
         let comments = await executeWithParameters(sql, parameters);

@@ -29,13 +29,13 @@ const LoginPage = () => {
 
     const performLogin = async (email, password) => {
         try {
-
+console.log(email, password);
             const response = await fetch(`http://localhost:3001/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({email, password})
             });
             const data = await response.json();
             if (response.status !== 200) {
